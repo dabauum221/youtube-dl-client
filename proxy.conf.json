@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "http://ytdl.baumflix.com",
+    "target": "https://ytdl.baumflix.com",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
