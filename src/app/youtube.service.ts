@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Http, ResponseContentType } from '@angular/http';
 import { YoutubeVideo } from './youtube-video';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { catchError, tap, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YoutubeService {
-
-  private youtubeDownloaderUrl = '/api';  // URL to web api
 
   constructor(
     private http: HttpClient
@@ -23,9 +18,10 @@ export class YoutubeService {
    * search
    */
   public search(value: string): Observable<YoutubeVideo[]> {
-    return this.http.get<YoutubeVideo[]>(this.youtubeDownloaderUrl + '/search?value=' + value)
+    return this.http.get<YoutubeVideo[]>('/api/search?value=' + value)
       .pipe(
-        tap(_ => this.log('searched youtube')),
+        retry(3),
+        tap(_ => console.log('Searched Youtube')),
         catchError(this.handleError('search', []))
       );
   }
@@ -34,8 +30,14 @@ export class YoutubeService {
    * getInfo
    */
   public getInfo(url: string): Observable<YoutubeVideo> {
-    return this.http.get<YoutubeVideo>(this.youtubeDownloaderUrl + '/info?url=' + url)
-      .pipe();
+    return this.http.get<YoutubeVideo>('/api/info?url=' + url)
+      .pipe(retry(3));
+  }
+
+  public async download(url: string, watch: boolean): Promise<Blob> {
+    const file =  await this.http.get<Blob>('/api/download?url=' + url + '&watch=' + watch,
+      {responseType: 'blob' as 'json'}).toPromise();
+    return file;
   }
 
   /**
@@ -47,15 +49,9 @@ export class YoutubeService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
-      this.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-  /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    // this.messageService.add(`HeroService: ${message}`);
-    console.log(message);
   }
 }

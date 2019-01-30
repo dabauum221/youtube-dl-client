@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSelectModule, MatFormFieldModule, MatOptionModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { YoutubeSearchComponent } from './youtube-search/youtube-search.component';
 
 @NgModule({
@@ -15,12 +14,10 @@ import { YoutubeSearchComponent } from './youtube-search/youtube-search.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    DeviceDetectorModule.forRoot(),
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatSelectModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
