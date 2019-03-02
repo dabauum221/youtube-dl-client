@@ -8,8 +8,9 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "serve": "node server",
+    "start": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,BUILD\" \"nodemon server\" \"ng build --watch\"",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -29,7 +30,12 @@
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26",
-    "bootstrap": "~4.3.1"
+    "serve-favicon": "^2.5.0",
+    "bootstrap": "~4.3.1",
+    "utf8": "^3.0.0",
+    "valid-url": "^1.0.9",
+    "youtube-dl": "^1.12.2",
+    "youtube-search": "^1.1.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.12.0",
@@ -40,7 +46,9 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "angular-ide": "^0.9.59",
+    "concurrently": "^3.5.1",
     "codelyzer": "~4.5.0",
+    "express": "^4.16.3",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.1",

@@ -56,9 +56,10 @@ export class YoutubeSearchComponent implements OnInit {
       this.videos = videos;
       this.searching = false;
       // this.informed = 0;
-      // for (const video of this.videos) {
+      for (const video of this.videos) {
+        video.ext = 'mp4';
         // this.getInfo(video.link);
-      // }
+      }
     }, error => {
       console.error(error);
     });
