@@ -20,6 +20,7 @@ COPY . .
 
 EXPOSE 8080
 
-RUN ng build --prod
+RUN yarn
+RUN yarn build
 
-CMD [ "npm", "serve" ]
+CMD [ "yarn", "serve" ]
