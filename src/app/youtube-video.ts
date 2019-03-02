@@ -11,4 +11,5 @@ export class YoutubeVideo {
   format: string;
   formats: Observable<[]>;
   copied: boolean;
+  pending: boolean;
 }

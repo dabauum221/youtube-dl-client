@@ -86,6 +86,7 @@ export class YoutubeSearchComponent implements OnInit {
   }
 
   public async download(video: YoutubeVideo, watch: boolean): Promise<void> {
+    video.pending = true;
     const blob = await this.youtubeService.download(video.link, watch);
     const url = window.URL.createObjectURL(blob);
     const link = this.downloadLink.nativeElement;
@@ -93,6 +94,7 @@ export class YoutubeSearchComponent implements OnInit {
     if (!watch) { link.download = video.title + '.' + video.ext; }
     link.click();
     window.URL.revokeObjectURL(url);
+    video.pending = false;
   }
 
   /**
