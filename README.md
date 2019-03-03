@@ -8,7 +8,34 @@ Run `npm start` for a dev server. Navigate to `http://localhost:3000/`. The app 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `yarn build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Run
+
+Run `yarn start` to run the program in development mode.
+
+```
+docker run -d\
+ --name youtube-downloader \
+ -p 8080:8080 \
+ --env GOOGLE_API_KEY=? \
+ dabauum221/youtube-downloader
+```
+## Compose
+
+```
+version: '3'
+
+services:
+  youtube-downloader:
+    image: dabauum221/youtube-downloader
+    expose:
+      - 8080
+    container_name: youtube-downloader
+    environment:
+     - GOOGLE_API_KEY=?
+    restart: unless-stopped
+```
 
 ## Running unit tests
 
