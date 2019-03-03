@@ -14,6 +14,8 @@ Run `yarn build` to build the project. The build artifacts will be stored in the
 
 Run `yarn start` to run the program in development mode.
 
+### Docker
+
 ```
 docker run -d\
  --name youtube-downloader \
@@ -21,7 +23,7 @@ docker run -d\
  --env GOOGLE_API_KEY=? \
  dabauum221/youtube-downloader
 ```
-## Compose
+### Docker Compose
 
 ```
 version: '3'
