@@ -28,8 +28,7 @@ export class YoutubeSearchComponent implements OnInit {
   public isNotDownloadable(): boolean {
     return [
       'iPhone',
-      'iPad',
-      'Android'
+      'iPad'
     ].some((item) => {
         return this.deviceService.device === item;
     });
