@@ -3,6 +3,7 @@ import { YoutubeService } from '../youtube.service';
 import { YoutubeVideo } from '../youtube-video';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { ClipboardService } from 'ngx-clipboard'
 
 @Component({
   selector: 'app-youtube-search',
@@ -20,7 +21,7 @@ export class YoutubeSearchComponent implements OnInit {
   informed: number;
   @ViewChild('downloadLink') private downloadLink: ElementRef;
 
-  constructor(private youtubeService: YoutubeService, public deviceService: DeviceDetectorService) { }
+  constructor(private youtubeService: YoutubeService, public deviceService: DeviceDetectorService, private _clipboardService: ClipboardService) { }
 
   ngOnInit() { }
 
@@ -102,16 +103,9 @@ export class YoutubeSearchComponent implements OnInit {
    */
   public copy(video: YoutubeVideo) {
     video.copied = true;
-    const selBox = document.createElement('textarea');
-    selBox.style.position = 'fixed';
-    selBox.style.left = '0';
-    selBox.style.top = '0';
-    selBox.style.opacity = '0';
-    selBox.value = window.location.href + 'api/download?url=' + video.link;
-    document.body.appendChild(selBox);
-    selBox.focus();
-    selBox.select();
-    document.execCommand('copy');
-    document.body.removeChild(selBox);
+    this._clipboardService.copyFromContent(window.location.href + 'api/download?url=' + video.link);
+    setTimeout( () => {
+      video.copied = false;
+    }, 2000);
   }
 }

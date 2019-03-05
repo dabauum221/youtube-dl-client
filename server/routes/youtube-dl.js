@@ -40,9 +40,22 @@ module.exports = function (app) {
         
         var watch = decodeURIComponent(req.query.watch);
         var format = decodeURIComponent(req.query.format);
-        var title = decodeURIComponent(req.query.title);
-        var ext = decodeURIComponent(req.query.ext);
-
+        
+        var title;
+        var ext;
+        if(!req.query.title || !req.query.ext) {
+            ytdl.getInfo(url, function(err, info) {
+                if (err) {
+                    console.error('ERROR: /api/info ' + err);
+                    return next(err);
+                }
+                title = info.title;
+                ext = info.ext;
+            });
+        } else { 
+            title = decodeURIComponent(req.query.title);
+            ext = decodeURIComponent(req.query.ext);
+        }
         var options = format && format !== 'undefined' && format.length > 0 ? ['-f', format] : [];
         
         console.log('INFO: Downloading using url \'%s\' and options %s', url, options);

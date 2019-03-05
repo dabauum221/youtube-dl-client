@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeviceDetectorModule } from 'ngx-device-detector';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 import { YoutubeSearchComponent } from './youtube-search/youtube-search.component';
@@ -17,6 +18,7 @@ import { YoutubeSearchComponent } from './youtube-search/youtube-search.componen
     DeviceDetectorModule.forRoot(),
     HttpClientModule,
     FormsModule,
+    ClipboardModule,
     ReactiveFormsModule
   ],
   providers: [],
