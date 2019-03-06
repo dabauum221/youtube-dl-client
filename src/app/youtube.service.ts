@@ -34,12 +34,6 @@ export class YoutubeService {
       .pipe(retry(3));
   }
 
-  public async download(url: string, watch: boolean): Promise<Blob> {
-    const file =  await this.http.get<Blob>('/api/download?url=' + url + '&watch=' + watch,
-      {responseType: 'blob' as 'json'}).toPromise();
-    return file;
-  }
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.
