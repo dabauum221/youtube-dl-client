@@ -15,6 +15,9 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install --only=production
 
+# Update to the latest youtube-dl
+RUN ./node_modules/youtube-dl/bin/youtube-dl -U
+
 # Bundle app source
 COPY . .
 
