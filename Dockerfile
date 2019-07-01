@@ -21,6 +21,15 @@ RUN ./node_modules/youtube-dl/bin/youtube-dl -U
 # Bundle app source
 COPY . .
 
+# Install cron
+RUN apt-get update && apt-get -y install cron
+
+# Move the update script to daily cron folder
+RUN mv /usr/src/app/youtube-dl-update /etc/cron.daily/
+
+# Give execution rights on the daily cron job
+RUN chmod 0755 /etc/cron.daily/youtube-dl-update
+
 EXPOSE 8080
 
 RUN yarn
