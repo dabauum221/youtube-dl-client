@@ -28,7 +28,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    DeviceDetectorModule.forRoot(),
+    DeviceDetectorModule,
     HttpClientModule,
     FormsModule,
     ClipboardModule,
