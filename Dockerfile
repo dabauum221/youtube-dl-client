@@ -35,4 +35,4 @@ EXPOSE 8080
 RUN yarn
 RUN yarn build
 
-CMD [ "yarn", "serve" ]
+CMD [ "sh", "-c", "service cron start && yarn serve" ]
