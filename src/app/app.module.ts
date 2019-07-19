@@ -6,14 +6,15 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { ClipboardModule } from 'ngx-clipboard';
 import { RouterModule, Routes } from '@angular/router';
 
-import { VgCoreModule } from 'videogular2/core';
-import { VgControlsModule } from 'videogular2/controls';
-import { VgOverlayPlayModule } from 'videogular2/overlay-play';
-import { VgBufferingModule } from 'videogular2/buffering';
+import { VgCoreModule } from 'videogular2/compiled/core';
+import { VgControlsModule } from 'videogular2/compiled/controls';
+import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
+import { VgBufferingModule } from 'videogular2/compiled/buffering';
 
 import { AppComponent } from './app.component';
 import { YoutubeSearchComponent } from './youtube-search/youtube-search.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
+import { YoutubeResultComponent } from './youtube-result/youtube-result.component';
 
 const appRoutes: Routes = [
   { path: 'video-player/:url', component: VideoPlayerComponent },
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     YoutubeSearchComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    YoutubeResultComponent
   ],
   imports: [
     BrowserModule,

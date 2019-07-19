@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:10
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -32,7 +32,6 @@ RUN chmod 0755 /etc/cron.daily/youtube-dl-update
 
 EXPOSE 8080
 
-RUN yarn
-RUN yarn build
+RUN npm build
 
-CMD [ "sh", "-c", "service cron start && yarn serve" ]
+CMD [ "sh", "-c", "service cron start && npm serve" ]

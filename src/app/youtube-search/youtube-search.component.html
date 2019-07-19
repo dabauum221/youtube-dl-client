@@ -1,60 +1,31 @@
 <div class="container">
-    <form [formGroup]="searchForm" (ngSubmit)="search()">
+    <form [formGroup]="searchForm" (ngSubmit)="search(false)">
         <div class="form-row">
-            <div class="col-9">
+            <div class="col-sm-8 col-md-10 search-bar">
                 <input formControlName="title" class="form-control form-control-lg" placeholder="Enter Title Here">
             </div>
-            <div class="col-2">
-                <div class="span" [hidden]="searching" style="min-width: 100px; padding-right: 10px;">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">
-                        Search
-                    </button>
-                </div>
-                <div class="span" [hidden]="!searching" style="width: 100px;">
-                    <div class="col-md-2 col-md-offset-8">
-                        <div class="spinner-border" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-sm-4 col-md-2 search-bar">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="searching">
+                    Search
+                </button>
             </div>
         </div>
     </form>
-    <div class="container">
-        <div *ngFor="let video of videos" class="row video-item">
-            <div class="col-md-4">
-                <img 
-                  src="{{ video.thumbnails.medium.url }}"
-                  alt="{{ video.title }}"
-                  height="{{ video.thumbnails.medium.height * 1.1}}"
-                  width="{{ video.thumbnails.medium.width * 1.1}}" />
-            </div>
-            <div class="col-md-8">
-                <h5>{{ video.title }}</h5>
-            </div>
-            <div class="col-md-2 video-buttons-grp">
-                <div class="btn-group">
-                    <button class="btn btn-warning" [routerLink]="['/video-player', video.link]">
-                        Watch
-                    </button>
-                    <div [hidden]="isNotDownloadable()">
-                        <button class="btn btn-success" (click)="download(video)">
-                            Download
-                        </button>
-                    </div>
-                    <div [hidden]="!isNotDownloadable()">
-                        <button class="btn btn-success" (click)="copy(video)">
-                            Copy
-                        </button>
-                    </div>
-                </div>
-                <div [hidden]="!video.copied" class="alert alert-success fade show" role="alert">
-                    <strong>Copied!</strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="video.copied = false;">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            </div>
+    <div class="container" [hidden]="!searching">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
+    </div>
+    <div class="container video-results">
+        <div>
+            <app-youtube-result *ngFor="let video of videos" [video]="video"></app-youtube-result>
+        </div>
+    </div>
+    <div class="row justify-content-md-center" style="margin-bottom: 15px; padding-left: 20px; padding-right: 20px;">
+        <button class="btn col-md-auto btn-primary" (click)="search(true)" [hidden]="searching || videos === null" [disabled]="true">
+            More Results
+        </button>
     </div>
 </div>

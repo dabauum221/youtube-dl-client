@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Http, ResponseContentType } from '@angular/http';
 import { YoutubeVideo } from './youtube-video';
 import { Observable, of } from 'rxjs';
 import { catchError, tap, retry } from 'rxjs/operators';
