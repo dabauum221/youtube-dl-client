@@ -32,6 +32,6 @@ RUN chmod 0755 /etc/cron.daily/youtube-dl-update
 
 EXPOSE 8080
 
-RUN npm build
+RUN npm run build
 
-CMD [ "sh", "-c", "service cron start && npm serve" ]
+CMD [ "sh", "-c", "service cron start && npm run serve" ]
