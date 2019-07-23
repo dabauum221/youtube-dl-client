@@ -41,12 +41,11 @@ export class YoutubeSearchComponent implements OnInit {
             console.warn('Cannot start a new serach while current search is still gathering info on the videos');
             return;
         }
+        this.searching = true;
         if (!more) {
           this.title = this.searchForm.value.title;
           this.localStorage.setItem('title', this.title).subscribe(() => {});
         }
-        this.searching = true;
-        // let title = this.searchForm.value.title;
         this.title = this.title.trim();
         if (!this.title || this.title.length === 0) {
             this.searching = false;

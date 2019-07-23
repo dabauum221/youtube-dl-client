@@ -18,7 +18,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
        this.source = '/api/download?url=' + params['url'] + '&watch=true';
     });
   }
-  
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

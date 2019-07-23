@@ -1,9 +1,5 @@
-<div class="container">
-    <div class="player-container">
-        <vg-player>
-            <video #media [vgMedia]="media" id="singleVideo" preload="auto" controls autoplay="true">
-                <source [src]="source" type="video/mp4">
-            </video>
-        </vg-player>
-    </div>
-</div>
+<vg-player>
+  <video #media class="full-width-height" [vgMedia]="media" id="singleVideo" preload="auto" controls autoplay="true">
+    <source [src]="source" type="video/mp4">
+  </video>
+</vg-player>

@@ -6,6 +6,11 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { ClipboardModule } from 'ngx-clipboard';
 import { RouterModule, Routes } from '@angular/router';
 
+// Angular Material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { VgCoreModule } from 'videogular2/compiled/core';
 import { VgControlsModule } from 'videogular2/compiled/controls';
 import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
@@ -30,6 +35,9 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FlexLayoutModule,
     DeviceDetectorModule.forRoot(),
     HttpClientModule,
     FormsModule,
