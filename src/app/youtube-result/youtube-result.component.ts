@@ -20,10 +20,9 @@ export class YoutubeResultComponent implements OnInit {
 
   public isNotDownloadable(): boolean {
     return [
-      'iPhone',
-      'iPad'
+      'iOS'
     ].some((item) => {
-      return this.deviceService.device === item;
+      return this.deviceService.os === item;
     });
   }
 
