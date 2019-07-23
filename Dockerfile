@@ -13,7 +13,7 @@ ENV LC_ALL=en_US.UTF-8
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install --only=production
+RUN npm install
 
 # Update to the latest youtube-dl
 RUN ./node_modules/youtube-dl/bin/youtube-dl -U
@@ -32,6 +32,6 @@ RUN chmod 0755 /etc/cron.daily/youtube-dl-update
 
 EXPOSE 8080
 
-RUN npm build
+RUN npm run build
 
-CMD [ "sh", "-c", "service cron start && npm serve" ]
+CMD [ "sh", "-c", "service cron start && npm run serve" ]
