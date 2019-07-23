@@ -1,18 +1,21 @@
 # Youtube Downloader
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
-
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server and client. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
+
+Alternatively you can have separate terminals and run:
+
+1. npm run serve
+2. ng serve --open --host 0.0.0.0 --proxy-config proxy.conf.json
 
 ## Build
 
-Run `yarn build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Run
 
-Run `yarn start` to run the program in development mode.
+Run `npm run serve` to run the server after a build.
 
 ### Docker
 
