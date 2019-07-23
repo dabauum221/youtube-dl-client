@@ -34,4 +34,4 @@ EXPOSE 8080
 
 RUN npm run build
 
-CMD [ "sh", "-c", "service cron start && npm run serve" ]
+CMD [ "sh", "-c", "service cron start && npm run-script serve" ]
