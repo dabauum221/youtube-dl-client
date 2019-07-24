@@ -19,7 +19,7 @@ export class YoutubeResultComponent implements OnInit {
   ngOnInit() {
   }
 
-  private isNotDownloadable(): boolean {
+  public isNotDownloadable(): boolean {
     return [
       'iPhone',
       'iPad'
@@ -28,14 +28,14 @@ export class YoutubeResultComponent implements OnInit {
     });
   }
 
-  private download(video: YoutubeVideo, watch: boolean): void {
+  public download(video: YoutubeVideo, watch: boolean): void {
     window.location.href = '/api/download?url=' + video.link;
   }
 
   /**
    * copy
    */
-  private copy(video: YoutubeVideo) {
+  public copy(video: YoutubeVideo) {
     video.copied = true;
     this.clipboardService.copyFromContent(window.location.href + 'api/download?url=' + video.link);
     setTimeout(() => {
