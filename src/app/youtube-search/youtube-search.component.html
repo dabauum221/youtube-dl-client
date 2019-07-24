@@ -3,7 +3,7 @@
     <mat-toolbar>
       <mat-toolbar-row>
         <div class="full-width search-div">
-          <input type="text" #searchInput class="full-width search-input" placeholder="Search" formControlName="title">
+          <input type="text" #searchInput class="full-width search-input" placeholder="Search..." formControlName="title">
         </div>
         <button mat-raised-button color="primary" (click) = "searchInput.value = ''" class="search-button" type="submit" [disabled]="searching">
           <mat-icon>search</mat-icon>

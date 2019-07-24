@@ -1,3 +1,6 @@
+// Set up the env variables =====================================================
+require('dotenv').config()
+
 // Set up the variables =========================================================
 var express = require('express');
 var bodyParser = require('body-parser');

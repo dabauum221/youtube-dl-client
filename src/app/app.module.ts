@@ -20,6 +20,7 @@ import { AppComponent } from './app.component';
 import { YoutubeSearchComponent } from './youtube-search/youtube-search.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { YoutubeResultComponent } from './youtube-result/youtube-result.component';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 const appRoutes: Routes = [
   { path: 'video-player/:url', component: VideoPlayerComponent },
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     AppComponent,
     YoutubeSearchComponent,
     VideoPlayerComponent,
-    YoutubeResultComponent
+    YoutubeResultComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

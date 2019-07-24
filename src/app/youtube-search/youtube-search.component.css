@@ -9,11 +9,13 @@
 .search-input {
   height: 28px;
   font-size: 24px;
+  border-radius: 5px;
 }
 
 ::placeholder {
   font-size: 24px;
-  color: lightblue;
+  color:rgba(176, 181, 184, 0.856);
+  padding-left: 8px;
 }
 .search-button {
   font-family: Arial, Helvetica, sans-serif;

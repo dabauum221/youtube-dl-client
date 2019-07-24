@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { YoutubeVideo } from '../youtube-video';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @Component({
   selector: 'app-youtube-result',
@@ -18,27 +19,27 @@ export class YoutubeResultComponent implements OnInit {
   ngOnInit() {
   }
 
-  public isNotDownloadable(): boolean {
+  private isNotDownloadable(): boolean {
     return [
-      'iOS'
+      'iPhone',
+      'iPad'
     ].some((item) => {
-      return this.deviceService.os === item;
+      return this.deviceService.device === item;
     });
   }
 
-  public download(video: YoutubeVideo, watch: boolean): void {
+  private download(video: YoutubeVideo, watch: boolean): void {
     window.location.href = '/api/download?url=' + video.link;
   }
 
   /**
    * copy
    */
-  public copy(video: YoutubeVideo) {
+  private copy(video: YoutubeVideo) {
     video.copied = true;
     this.clipboardService.copyFromContent(window.location.href + 'api/download?url=' + video.link);
     setTimeout(() => {
       video.copied = false;
     }, 2000);
   }
-
 }

@@ -1,21 +1,24 @@
-<div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutAlign="start start" class="result-frame">
+<div fxLayout="row" fxLayoutAlign="start start" class="result-frame">
   <div>
-    <img src="{{ video.thumbnails['medium'].url }}" alt="{{ video.title }}" />
+    <img src="{{ video.thumbnails['medium'].url }}" alt="{{ video.title }}" height="{{ video.thumbnails['medium'].height * 0.5 }}" width="{{ video.thumbnails['medium'].width * 0.5 }}"/>
   </div>
-  <div fxLayout="column">
-    <h3>{{ video.title }}</h3>
+  <div fxLayout="column" fxLayoutAlign="start start" class="video-info">
+    <span class="video-title-label">{{ (video.title.length > 50) ? (video.title | slice:0:50)+'...' : (video.title) }}</span>
     <div fxLayout="row">
-      <button mat-raised-button color="accent" [routerLink]="['/video-player', video.link]">
-        Watch
+      <span class="video-sub-label">{{ video.channelTitle + ' - ' + (video.publishedAt | timeAgo) }}</span>
+    </div>
+    <div fxLayout="row" fxLayoutGap="10px">
+      <button mat-raised-button class="play-button" [routerLink]="['/video-player', video.link]">
+        <mat-icon>play_arrow</mat-icon>
       </button>
       <div [hidden]="isNotDownloadable()">
-        <button mat-raised-button (click)="download(video, false)">
-          Download
+        <button mat-raised-button class="download-copy-button" (click)="download(video, false)">
+          <mat-icon>cloud_download</mat-icon>
         </button>
       </div>
       <div [hidden]="!isNotDownloadable()">
-        <button mat-raised-button (click)="copy(video)">
-          Copy
+        <button mat-raised-button class="download-copy-button" (click)="copy(video)">
+          <mat-icon>file_copy</mat-icon>
         </button>
       </div>
     </div>
