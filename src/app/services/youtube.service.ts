@@ -19,7 +19,7 @@ export class YoutubeService {
     return this.http.get('/api/search?value=' + value + (pageToken ? ('&pageToken=' + pageToken) : ''))
       .pipe(
         retry(3),
-        tap(_ => console.log('Searched Youtube')),
+        tap(),
         catchError(this.handleError('search', []))
       );
   }
