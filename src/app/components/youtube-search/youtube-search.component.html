@@ -1,16 +1,17 @@
 <div class="container">
   <form [formGroup]="searchForm" (ngSubmit)="search(false)">
-    <mat-toolbar>
-      <mat-toolbar-row>
-        <div class="full-width search-div">
-          <input type="text" #searchInput class="full-width search-input" placeholder="Search..." formControlName="title">
-        </div>
-        <button mat-raised-button color="primary" (click) = "searchInput.value = ''" class="search-button" type="submit" [disabled]="searching">
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
+    <div fxLayout="row" fxLayoutAlign="center center" class="search-toolbar full-width">
+      <div class="full-width search-div">
+        <input type="text" #searchInput class="full-width search-input" placeholder="Search..." formControlName="title">
+      </div>
+      <button mat-raised-button color="primary" (click) = "searchInput.value = ''" class="search-button" type="submit" [disabled]="searching">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
   </form>
+  <div>
+    <app-youtube-result *ngFor="let video of videos" [video]="video"></app-youtube-result>
+  </div>
   <div class="container" [hidden]="!searching">
     <div class="spinner">
       <div class="bounce1"></div>
@@ -18,12 +19,9 @@
       <div class="bounce3"></div>
     </div>
   </div>
-  <div>
-    <app-youtube-result *ngFor="let video of videos" [video]="video"></app-youtube-result>
-  </div>
-  <!--<div>
-    <button (click)="search(true)" [hidden]="searching || videos === null" [disabled]="true">
+  <div fxLayout="row" fxLayoutAlign="center center" class="full-width search-more-bar" [hidden]="searching">
+    <button mat-raised-button color="primary" (click)="search(true)" [disabled]="searching">
       More Results
     </button>
-  </div>-->
+  </div>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
-import { YoutubeVideo } from '../../model/youtube-video';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
@@ -10,7 +9,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class YoutubeResultComponent implements OnInit {
 
-  @Input() video: YoutubeVideo;
+  @Input() video;
 
   constructor(private clipboardService: ClipboardService,
               public deviceService: DeviceDetectorService) { }
@@ -27,14 +26,14 @@ export class YoutubeResultComponent implements OnInit {
     });
   }
 
-  public download(video: YoutubeVideo, watch: boolean): void {
+  public download(video, watch: boolean): void {
     window.location.href = '/api/download?url=' + video.link;
   }
 
   /**
    * copy
    */
-  public copy(video: YoutubeVideo) {
+  public copy(video) {
     video.copied = true;
     this.clipboardService.copyFromContent(window.location.href + 'api/download?url=' + video.link);
     setTimeout(() => {

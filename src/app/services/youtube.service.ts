@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { YoutubeVideo } from '../model/youtube-video';
 import { Observable, of } from 'rxjs';
 import { catchError, tap, retry } from 'rxjs/operators';
 
@@ -16,8 +15,8 @@ export class YoutubeService {
   /**
    * search
    */
-  public search(value: string): Observable<YoutubeVideo[]> {
-    return this.http.get<YoutubeVideo[]>('/api/search?value=' + value)
+  public search(value: string, pageToken: string) {
+    return this.http.get('/api/search?value=' + value + (pageToken ? ('&pageToken=' + pageToken) : ''))
       .pipe(
         retry(3),
         tap(_ => console.log('Searched Youtube')),
@@ -28,8 +27,8 @@ export class YoutubeService {
   /**
    * getInfo
    */
-  public getInfo(url: string): Observable<YoutubeVideo> {
-    return this.http.get<YoutubeVideo>('/api/info?url=' + url)
+  public getInfo(url: string) {
+    return this.http.get('/api/info?url=' + url)
       .pipe(retry(3));
   }
 
