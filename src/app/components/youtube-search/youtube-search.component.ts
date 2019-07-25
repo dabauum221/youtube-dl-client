@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { YoutubeService } from '../youtube.service';
-import { YoutubeVideo } from '../youtube-video';
+import { YoutubeService } from '../../services/youtube.service';
+import { YoutubeVideo } from '../../model/youtube-video';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 

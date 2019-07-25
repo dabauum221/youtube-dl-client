@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from './modules/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { VgCoreModule } from 'videogular2/compiled/core';
@@ -17,9 +17,9 @@ import { VgOverlayPlayModule } from 'videogular2/compiled/overlay-play';
 import { VgBufferingModule } from 'videogular2/compiled/buffering';
 
 import { AppComponent } from './app.component';
-import { YoutubeSearchComponent } from './youtube-search/youtube-search.component';
-import { VideoPlayerComponent } from './video-player/video-player.component';
-import { YoutubeResultComponent } from './youtube-result/youtube-result.component';
+import { YoutubeSearchComponent } from './components/youtube-search/youtube-search.component';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { YoutubeResultComponent } from './components/youtube-result/youtube-result.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
 const appRoutes: Routes = [

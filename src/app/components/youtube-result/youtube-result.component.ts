@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
-import { YoutubeVideo } from '../youtube-video';
+import { YoutubeVideo } from '../../model/youtube-video';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { TimeAgoPipe } from 'time-ago-pipe';
 
 @Component({
   selector: 'app-youtube-result',
