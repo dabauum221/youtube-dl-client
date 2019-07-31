@@ -27,7 +27,9 @@ export class YoutubeResultComponent implements OnInit {
   }
 
   public download(video, watch: boolean): void {
-    window.location.href = '/api/download?url=http://www.youtube.com/watch?v=' + video.id.videoId;
+    window.location.href = '/api/download' +
+                           '?url=http://www.youtube.com/watch?v=' + video.id.videoId +
+                           '&title=' + video.snippet.title;
   }
 
   /**
@@ -35,7 +37,9 @@ export class YoutubeResultComponent implements OnInit {
    */
   public copy(video) {
     video.copied = true;
-    this.clipboardService.copyFromContent(window.location.href + 'api/download?url=http://www.youtube.com/watch?v=' + video.id.videoId);
+    this.clipboardService.copyFromContent(window.location.href + 'api/download' +
+                                                                 '?url=http://www.youtube.com/watch?v=' + video.id.videoId +
+                                                                 '&title=' + video.snippet.title);
     setTimeout(() => {
       video.copied = false;
     }, 2000);

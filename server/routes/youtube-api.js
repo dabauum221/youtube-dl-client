@@ -1,9 +1,5 @@
 // Set up the variables =========================================================
-var YouTube = require('youtube-node');
-var youTube = new YouTube();
-
-youTube.setKey(process.env.GOOGLE_API_KEY);
-
+const https = require('https');
 
 // Register the API routes
 module.exports = function (app) {
@@ -14,14 +10,30 @@ module.exports = function (app) {
 
         var pageToken = req.query.pageToken
 
-        // Use the youtube search library to search the value and respond with the results
-        youTube.search(req.query.value, 10, {pageToken: pageToken, type: 'video'}, function(error, result) {
-            if (error) {
-                return next(error);
-            } else {
-                console.info('Searching for "%s" found %d results', req.query.value, result.items.length);
-                res.send(result);
-            }
+        var params = '?part=snippet';
+        params += '&order=relevance';
+        params += '&maxResults=10';
+        if (pageToken && pageToken.length > 0) params += '&pageToken=' + pageToken;
+        params += '&q=' + req.query.value;
+        params += '&type=video';
+        params += '&key=' + process.env.GOOGLE_API_KEY;
+
+        https.get('https://www.googleapis.com/youtube/v3/search' + params, (resp) => {
+        let data = '';
+
+          // A chunk of data has been recieved.
+          resp.on('data', (chunk) => {
+            data += chunk;
+          });
+
+          // The whole response has been received. Print out the result.
+          resp.on('end', () => {
+            res.send(JSON.parse(data));
+          });
+
+        }).on("error", (err) => {
+          console.log("Error: " + err.message);
+          return next(err);
         });
     });
 };
