@@ -1,9 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="start start" class="result-frame">
   <div>
-    <img src="{{ video.snippet.thumbnails.medium.url }}"
-      alt="{{ video.title }}"
-      height="{{ video.snippet.thumbnails.medium.height * 0.5 }}"
-      width="{{ video.snippet.thumbnails.medium.width * 0.5 }}"/>
+    <img id="thumbnail" src="{{ video.snippet.thumbnails.medium.url }}" class="responsive"/>
   </div>
   <div fxLayout="column" fxLayoutAlign="start start" class="video-info">
     <span class="video-title-label">{{ (video.snippet.title.length > 50) ? (video.snippet.title | slice:0:50) + '...' : (video.snippet.title) }}</span>
