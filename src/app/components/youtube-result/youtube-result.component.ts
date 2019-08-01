@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-youtube-result',
@@ -11,7 +12,8 @@ export class YoutubeResultComponent implements OnInit {
 
   @Input() video;
 
-  constructor(private clipboardService: ClipboardService,
+  constructor(private _clipboardService: ClipboardService,
+              private _snackBar: MatSnackBar,
               public deviceService: DeviceDetectorService) { }
 
   ngOnInit() {
@@ -36,12 +38,11 @@ export class YoutubeResultComponent implements OnInit {
    * copy
    */
   public copy(video) {
-    video.copied = true;
-    this.clipboardService.copyFromContent(window.location.href + 'api/download' +
+    this._clipboardService.copyFromContent(window.location.href + 'api/download' +
                                                                  '?url=http://www.youtube.com/watch?v=' + video.id.videoId +
-                                                                 '&title=' + video.snippet.title);
-    setTimeout(() => {
-      video.copied = false;
-    }, 2000);
+                                                                 '&title=' + escape(video.snippet.title));
+    this._snackBar.open('URL Copied!', null, {
+      duration: 2000,
+    });
   }
 }
