@@ -1,10 +1,10 @@
 <div class="container">
   <form [formGroup]="searchForm" (ngSubmit)="search(false)">
-    <div fxLayout="row" fxLayoutAlign="center center" class="search-toolbar full-width">
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="search-toolbar full-width">
       <div class="full-width search-div">
         <input type="text" #searchInput class="full-width search-input" placeholder="Search..." formControlName="title">
       </div>
-      <button mat-raised-button color="primary" (click) = "searchInput.value = ''" class="search-button" type="submit" *ngIf="!searching">
+      <button mat-raised-button color="primary" (click) = "searchInput.value = ''" type="submit" *ngIf="!searching">
         <mat-icon>search</mat-icon>
       </button>
     </div>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center" class="full-width search-more-bar">
-    <button mat-raised-button color="primary" (click)="search(true)" *ngIf="!searching">
+    <button mat-raised-button color="primary" (click)="search(true)" *ngIf="videos && videos.length > 0 && !searching">
       More Results
     </button>
   </div>

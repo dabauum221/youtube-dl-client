@@ -18,6 +18,12 @@
   border-radius: 5px;
 }
 
+@supports (-webkit-overflow-scrolling: touch) {
+  .search-input {
+    width: 92%;
+  }
+}
+
 ::placeholder {
   font-size: 24px;
   color:rgba(176, 181, 184, 0.856);
@@ -25,6 +31,7 @@
 }
 
 .search-more-bar {
+  height: 40px;
   margin-bottom: 15px;
 }
 
