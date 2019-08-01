@@ -3,7 +3,7 @@ import { YoutubeService } from '../../services/youtube.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
-const decode = require('unescape');
+import * as unescape from 'unescape';
 
 @Component({
     selector: 'app-youtube-search',
@@ -64,14 +64,14 @@ export class YoutubeSearchComponent implements OnInit {
             this.pageToken = result['nextPageToken'];
             if (more) {
                 for (const video of result['items']) {
-                  video.snippet.title = decode(video.snippet.title);
+                  video.snippet.title = unescape(video.snippet.title);
                   video.ext = 'mp4';
                   this.videos.push(video);
                 }
             } else {
                 this.videos = result['items'];
                 for (const video of this.videos) {
-                  video.snippet.title = decode(video.snippet.title);
+                  video.snippet.title = unescape(video.snippet.title);
                   video.ext = 'mp4';
                 }
             }
