@@ -5,11 +5,13 @@
 }
 
 video {
+  height: 184px;
   width: 320px;
 }
 
 @media screen and ( max-width: 750px) {
   video {
+    height: 117px;
     width: 200px;
   }
   img.responsive {
@@ -19,6 +21,7 @@ video {
 
 @media screen and ( max-width: 500px ) {
   video {
+    height: 90px;
     width: 160px;
   }
   img.responsive {
