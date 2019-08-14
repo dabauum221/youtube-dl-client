@@ -4,12 +4,26 @@
   margin: 8px 8px;
 }
 
+video {
+  width: 320px;
+}
+
 @media screen and ( max-width: 750px) {
-  img.responsive { width: 200px;}
+  video {
+    width: 200px;
+  }
+  img.responsive {
+    width: 200px;
+  }
 }
 
 @media screen and ( max-width: 500px ) {
-  img.responsive { width: 160px; }
+  video {
+    width: 160px;
+  }
+  img.responsive {
+    width: 160px;
+  }
 }
 
 img.responsive { height: auto; }

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Video } from 'src/app/model/video';
 
 @Component({
   selector: 'app-youtube-result',
@@ -10,7 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class YoutubeResultComponent implements OnInit {
 
-  @Input() video;
+  @Input() video: Video;
+  playing: boolean = false;
 
   constructor(private _clipboardService: ClipboardService,
               private _snackBar: MatSnackBar,

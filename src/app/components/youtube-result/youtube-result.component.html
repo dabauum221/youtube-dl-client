@@ -1,15 +1,24 @@
 <div class="result-frame">
-  <div>
-    <img id="thumbnail" src="{{ video.snippet.thumbnails.medium.url }}" class="responsive"/>
+  <div *ngIf="!playing">
+    <img id="thumbnail" src="{{ video.snippet.thumbnails.medium.url }}" class="responsive" />
   </div>
+  <video *ngIf="playing" src="{{'/api/download?watch=true&url=http://www.youtube.com/watch?v=' + video.id.videoId}}"
+    autoplay loop muted playsinline controls></video>
   <div class="video-info">
     <div class="video-labels">
-      <span class="video-title-label">{{ (video.snippet.title.length > 50) ? (video.snippet.title | slice:0:50) + '...' : (video.snippet.title) }}</span>
-      <span class="video-sub-label">{{ video.snippet.channelTitle + ' - ' + (video.snippet.publishedAt | timeAgo) }}</span>
+      <span class="video-title-label">
+        {{ (video.snippet.title.length > 50) ? (video.snippet.title | slice:0:50) + '...' : (video.snippet.title) }}
+      </span>
+      <span class="video-sub-label">
+        {{ video.snippet.channelTitle + ' - ' + (video.snippet.publishedAt | timeAgo) }}
+      </span>
     </div>
     <div class="buttons">
-      <button mat-raised-button class="video-action-button" [routerLink]="['/video-player', 'http://www.youtube.com/watch?v=' + video.id.videoId]">
+      <button mat-raised-button class="video-action-button" (click)="playing = !playing" *ngIf="!playing">
         <mat-icon>play_arrow</mat-icon>
+      </button>
+      <button mat-raised-button class="video-action-button" (click)="playing = !playing" *ngIf="playing">
+        <mat-icon>stop</mat-icon>
       </button>
       <div [hidden]="isNotDownloadable()">
         <button mat-raised-button class="video-action-button" (click)="download(video, false)">
