@@ -9,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 // Angular Material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { YoutubeSearchComponent } from './components/youtube-search/youtube-search.component';
@@ -34,7 +33,6 @@ const appRoutes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule,
     DeviceDetectorModule.forRoot(),
     HttpClientModule,
     FormsModule,

@@ -1,11 +1,13 @@
-<div fxLayout="row" fxLayoutAlign="start start" class="result-frame">
+<div class="result-frame">
   <div>
     <img id="thumbnail" src="{{ video.snippet.thumbnails.medium.url }}" class="responsive"/>
   </div>
-  <div fxLayout="column" fxLayoutAlign="start start" class="video-info">
-    <span class="video-title-label">{{ (video.snippet.title.length > 50) ? (video.snippet.title | slice:0:50) + '...' : (video.snippet.title) }}</span>
-    <span class="video-sub-label">{{ video.snippet.channelTitle + ' - ' + (video.snippet.publishedAt | timeAgo) }}</span>
-    <div fxLayout="row" fxLayoutGap="10px">
+  <div class="video-info">
+    <div class="video-labels">
+      <span class="video-title-label">{{ (video.snippet.title.length > 50) ? (video.snippet.title | slice:0:50) + '...' : (video.snippet.title) }}</span>
+      <span class="video-sub-label">{{ video.snippet.channelTitle + ' - ' + (video.snippet.publishedAt | timeAgo) }}</span>
+    </div>
+    <div class="buttons">
       <button mat-raised-button class="video-action-button" [routerLink]="['/video-player', 'http://www.youtube.com/watch?v=' + video.id.videoId]">
         <mat-icon>play_arrow</mat-icon>
       </button>

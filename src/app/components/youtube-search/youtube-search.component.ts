@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 
 import * as unescape from 'unescape';
+import { Video } from 'src/app/model/video';
 
 @Component({
     selector: 'app-youtube-search',
@@ -19,7 +20,7 @@ export class YoutubeSearchComponent implements OnInit {
     });
     searching = false;
     title: string;
-    videos;
+    videos: Video[];
     informed: number;
     pageToken: string = null;
 
@@ -27,7 +28,7 @@ export class YoutubeSearchComponent implements OnInit {
                 protected localStorage: LocalStorage) { }
 
     ngOnInit() {
-        this.localStorage.getItem('videos').subscribe((videos) => {
+        this.localStorage.getItem('videos').subscribe((videos: Video[]) => {
           this.videos = videos;
         });
         this.localStorage.getItem<string>('title').subscribe((title: string) => {
@@ -60,7 +61,7 @@ export class YoutubeSearchComponent implements OnInit {
           this.pageToken = null;
           this.videos = [];
         }
-        this.youtubeService.search(this.title, this.pageToken).subscribe(result => {
+        this.youtubeService.search(this.title, this.pageToken).subscribe( result => {
             this.pageToken = result['nextPageToken'];
             if (more) {
                 for (const video of result['items']) {
@@ -88,8 +89,8 @@ export class YoutubeSearchComponent implements OnInit {
      * getInfo
      */
     public getInfo(url: string): void {
-        this.youtubeService.getInfo(url).subscribe(video => {
-            const found = this.videos.filter(x => x['id'] === video['id'])[0];
+        this.youtubeService.getInfo(url).subscribe( video => {
+            const found = this.videos.filter(x => x.id.videoId === video['id'])[0];
             found.formats = video['formats'];
             found.ext = video['ext'];
         // Handle error

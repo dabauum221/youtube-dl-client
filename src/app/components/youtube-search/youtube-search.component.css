@@ -3,9 +3,13 @@
 }
 
 .search-toolbar {
-  height: 60px;
+  display: flex;
+  position: fixed;
+  justify-content: space-evenly;
+  height: 45px;
   background-color: rgba(223, 237, 245, 0.233);
   padding: 15px;
+  z-index: 1;
 }
 
 .search-div {
@@ -13,9 +17,17 @@
 }
 
 .search-input {
-  height: 28px;
+  height: 30px;
   font-size: 24px;
   border-radius: 5px;
+}
+
+.button-div {
+  margin-right: 30px;
+}
+
+.results-area {
+  padding-top: 70px;
 }
 
 @supports (-webkit-overflow-scrolling: touch) {
@@ -23,10 +35,16 @@
     .search-input {
       width: 92%;
     }
+    .button {
+      height: 100%;
+    }
   }
   @media screen and ( min-width: 501px ) {
     .search-input {
       width: 96%;
+    }
+    .button {
+      height: 100%;
     }
   }
 }
@@ -38,6 +56,8 @@
 }
 
 .search-more-bar {
+  display: flex;
+  justify-content: center;
   height: 40px;
   margin-bottom: 15px;
 }
