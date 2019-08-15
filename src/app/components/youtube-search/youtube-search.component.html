@@ -1,11 +1,15 @@
 <div class="container">
-  <form [formGroup]="searchForm" (ngSubmit)="search(false)">
+  <form name="form" #form="ngForm" (ngSubmit)="form.form.valid && search(false)" novalidate>
     <div class="search-toolbar full-width">
       <div class="full-width search-div">
-        <input type="text" #searchInput class="full-width search-input" placeholder="Search..." formControlName="title">
+        <input name="title" type="text" class="full-width search-input" [(ngModel)]="titleValue"
+          placeholder="Search..." #title="ngModel" [ngClass]="{ 'invalid': form.submitted && title.invalid }" required>
+        <div *ngIf="form.submitted && title.invalid" class="invalid-feedback">
+          <div *ngIf="title.errors.required">Search title is required!</div>
+        </div>
       </div>
       <div class="button-div">
-        <button mat-raised-button color="primary" (click)="searchInput.value = ''" type="submit" *ngIf="!searching" class="button">
+        <button mat-raised-button color="primary" type="submit" [disabled]="searching" class="button">
           <mat-icon>search</mat-icon>
         </button>
       </div>
