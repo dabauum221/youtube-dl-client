@@ -4,9 +4,9 @@
       <div class="full-width search-div">
         <input name="title" type="text" class="full-width search-input" [(ngModel)]="titleValue"
           placeholder="Search..." #title="ngModel" [ngClass]="{ 'invalid': form.submitted && title.invalid }" required>
-        <div *ngIf="form.submitted && title.invalid" class="invalid-feedback">
-          <div *ngIf="title.errors.required">Search title is required!</div>
-        </div>
+        <p *ngIf="form.submitted && title.invalid" class="invalid-feedback">
+          Search title is required!
+        </p>
       </div>
       <div class="button-div">
         <button mat-raised-button color="primary" type="submit" [disabled]="searching" class="button">

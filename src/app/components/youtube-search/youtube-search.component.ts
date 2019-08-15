@@ -3,7 +3,6 @@ import { YoutubeService } from '../../services/youtube.service';
 
 import * as unescape from 'unescape';
 import { Video } from 'src/app/model/video';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-youtube-search',
@@ -14,6 +13,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 @Injectable()
 export class YoutubeSearchComponent implements OnInit {
 
+    titleValue: string = '';
     searching: boolean = false;
     videos: Array<Video>;
     informed: number;
