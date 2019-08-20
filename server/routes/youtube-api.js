@@ -14,7 +14,7 @@ module.exports = function (app) {
         params += '&order=relevance';
         params += '&maxResults=10';
         if (pageToken && pageToken.length > 0) params += '&pageToken=' + pageToken;
-        params += '&q=' + req.query.value;
+        params += '&q=' + encodeURIComponent(req.query.value);
         params += '&type=video';
         params += '&key=' + process.env.GOOGLE_API_KEY;
 
